@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+    font-family: monospace;
+    color: white;
+}
+
+.center-content {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100%;
+    flex-flow: column;
+
+    b {
+        font-size: xxx-large;
+    }
+
+    img {
+        width: 500px;
+    }
+}

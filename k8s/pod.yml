@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sodiadrhain-nginx-pod
+  labels:
+    name: sodiadrhain-nginx-pod
+spec:
+  containers:
+  - name: sodiadrhain-nginx
+    image: sodiadrhain/nginx:latest
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  automountServiceAccountToken: false
