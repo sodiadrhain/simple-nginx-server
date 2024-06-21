@@ -8,7 +8,7 @@ jobs:
     name: Build
     uses: gh-actions-workflows/docker-workflows/.github/workflows/docker-publish.yaml@master
     with:
-      app_name: 'my-app'
+      app_name: 'nginx'
       docker_hub_user: ${{ vars.DOCKER_USER }}
     secrets:
       docker_hub_password: ${{ secrets.DOCKER_PASSWORD }}
