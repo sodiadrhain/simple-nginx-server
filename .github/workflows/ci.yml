@@ -1,0 +1,27 @@
+name: Deploy to Render
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    name: Build
+    uses: gh-actions-workflows/docker-workflows/.github/workflows/docker-publish.yaml@master
+    with:
+      app_name: 'my-app'
+      docker_hub_user: ${{ vars.DOCKER_USER }}
+    secrets:
+      docker_hub_password: ${{ secrets.DOCKER_PASSWORD }}
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Render
+        uses: gh-actions-workflows/deploy-docker-render@v1.1
+        with:
+          deploy-hook: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          image-url: ${{ needs.build.outputs.image_name }}
+          render-api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-deployment: true
